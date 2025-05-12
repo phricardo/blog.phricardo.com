@@ -8,9 +8,9 @@ import ArticleContent from "@/components/ArticleContent";
 export default async function ArticlePage({
   params,
 }: {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }) {
-  const { slug } = params;
+  const { slug } = await params;
 
   // Fetch article metadata and raw content
   let article: ArticleData;
