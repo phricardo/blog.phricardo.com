@@ -58,10 +58,7 @@ Vamos precisar apenas configurar as opções de build do seu projeto.
    1. Na janela de propriedades, clique em **Project build options…** (botão inferior)
    2. Selecione a aba **Search directories**
    3. Escolha **Compiler**
-   4. Clique em **Add** e insira:
-      ```
-      C:\SDL2\include
-      ```
+   4. Clique em **Add** e insira: C:\SDL2\include
    5. Se essa entrada já existir, não faça nada.
    6. Escolha **Linker**
    7. Clique em **Add** e insira: C:\SDL2\lib
