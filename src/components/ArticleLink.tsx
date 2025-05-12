@@ -13,43 +13,30 @@ export default function ArticleLink({
 }) {
   return (
     <div
-      style={{
-        background: "#eee",
-        padding: "1rem",
-        borderRadius: "0.4rem",
-        display: "flex",
-        flexDirection: "column",
-        gap: "1rem",
-      }}
       key={article.slug}
+      className="border border-gray-200 rounded-2xl p-5 hover:shadow-md transition-shadow duration-200 bg-white"
     >
-      <h2
-        style={{
-          display: "inline-flex",
-          alignItems: "center",
-          gap: "0.5rem",
-        }}
-      >
+      <h2 className="text-xl font-semibold text-blue-600 hover:underline mb-2">
         {index + 1}.{" "}
         <Link href={`/articles/${article.slug}`}>{article.title}</Link>
       </h2>
 
-      <div style={{ display: "inline-flex", gap: "0.5rem" }}>
+      <div className="flex flex-wrap gap-x-6 gap-y-2 text-sm text-gray-600">
         {article.author && (
           <p>
-            <strong>Autor:</strong> {article.author}
+            <span className="font-medium text-gray-800">Autor:</span>{" "}
+            {article.author}
           </p>
         )}
-
         {article.publishDate && (
           <p>
-            <strong>Publicado em:</strong> {article.publishDate}
+            <span className="font-medium text-gray-800">Publicado em:</span>{" "}
+            {article.publishDate}
           </p>
         )}
-
         {article.tags.length > 0 && (
           <p>
-            <strong>Tags: </strong>
+            <span className="font-medium text-gray-800">Tags:</span>{" "}
             {article.tags.join(", ")}
           </p>
         )}
