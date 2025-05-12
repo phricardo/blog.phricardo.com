@@ -1,9 +1,28 @@
 "use server";
 
+import type { Metadata } from "next";
 import { getArticleMarkdown, type ArticleData } from "@/utils/articles";
 import { getHtmlContent } from "@/utils/getHtmlContent";
 import ArticleContent from "@/components/ArticleContent";
 import ArticleNotFound from "@/components/ArticleNotFound";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+  try {
+    const { slug } = await params;
+    const article = getArticleMarkdown(slug);
+    return {
+      title: `${article.title}`,
+    };
+  } catch {
+    return {
+      title: "Artigo não encontrado",
+    };
+  }
+}
 
 export default async function ArticlePage({
   params,

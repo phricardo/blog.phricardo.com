@@ -1,49 +1,22 @@
-"use server";
+import { getAllArticles, type ArticleMeta } from "@/utils/articles";
+import ArticleLink from "@/components/ArticleLink";
 
-import type { Metadata } from "next";
-import { getArticleMarkdown, type ArticleData } from "@/utils/articles";
-import { getHtmlContent } from "@/utils/getHtmlContent";
-import ArticleContent from "@/components/ArticleContent";
-import ArticleNotFound from "@/components/ArticleNotFound";
+export default async function Index() {
+  const articles: ArticleMeta[] = getAllArticles();
 
-export async function generateMetadata({
-  params,
-}: {
-  params: { slug: string };
-}): Promise<Metadata> {
-  try {
-    const article = getArticleMarkdown(params.slug);
-    return {
-      title: article.title,
-    };
-  } catch {
-    return {
-      title: "Artigo não encontrado",
-    };
-  }
-}
-
-export default async function ArticlePage({
-  params,
-}: {
-  params: { slug: string };
-}) {
-  let article: ArticleData;
-  try {
-    article = getArticleMarkdown(params.slug);
-  } catch {
-    return <ArticleNotFound />;
-  }
-
-  const { publishDate, title, author, content } = article;
-  const htmlContent = await getHtmlContent(content);
-
+  if (articles.length === 0) return <h1>No articles found</h1>;
   return (
-    <ArticleContent
-      title={title}
-      author={author}
-      publishDate={publishDate}
-      htmlContent={htmlContent}
-    />
+    <div
+      className="container"
+      style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}
+    >
+      {articles.map((article: ArticleMeta, index: number) => (
+        <ArticleLink
+          key={article.slug ?? index}
+          article={article}
+          index={index}
+        />
+      ))}
+    </div>
   );
 }
