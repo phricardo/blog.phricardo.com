@@ -1,6 +1,5 @@
 "use server";
 
-import Link from "next/link";
 import { getArticleMarkdown, type ArticleData } from "@/utils/articles";
 import { getHtmlContent } from "@/utils/getHtmlContent";
 import ArticleContent from "@/components/ArticleContent";
