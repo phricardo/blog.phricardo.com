@@ -10,7 +10,7 @@ export default async function Index() {
       className="container"
       style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}
     >
-      {articles.map((article: any, index: number) => (
+      {articles.map((article: ArticleMeta, index: number) => (
         <ArticleLink
           key={article.slug ?? index}
           article={article}
