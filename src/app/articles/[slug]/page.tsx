@@ -4,6 +4,7 @@ import Link from "next/link";
 import { getArticleMarkdown, type ArticleData } from "@/utils/articles";
 import { getHtmlContent } from "@/utils/getHtmlContent";
 import ArticleContent from "@/components/ArticleContent";
+import ArticleNotFound from "@/components/ArticleNotFound";
 
 export default async function ArticlePage({
   params,
@@ -18,12 +19,7 @@ export default async function ArticlePage({
     article = getArticleMarkdown(slug);
   } catch (err) {
     console.log(err);
-    return (
-      <div>
-        <h1>Article not found</h1>
-        <Link href="/">Back to Home</Link>
-      </div>
-    );
+    return <ArticleNotFound />;
   }
 
   const { publishDate, title, author, content } = article;
