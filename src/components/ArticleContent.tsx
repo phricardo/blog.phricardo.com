@@ -43,7 +43,7 @@ export default function ArticleContent({
           </div>
         </header>
 
-        <article className="prose prose-neutral max-w-none">
+        <article className="markdown-content">
           <ContentRenderer htmlContent={htmlContent} />
         </article>
       </div>
