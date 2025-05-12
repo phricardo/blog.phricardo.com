@@ -11,7 +11,11 @@ export default async function Index() {
       style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}
     >
       {articles.map((article: any, index: number) => (
-        <ArticleLink article={article} index={index} />
+        <ArticleLink
+          key={article.slug ?? index}
+          article={article}
+          index={index}
+        />
       ))}
     </div>
   );
