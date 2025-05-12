@@ -1,7 +1,7 @@
 "use server";
 
 import Link from "next/link";
-import { getArticleMarkdown } from "@/utils/articles";
+import { getArticleMarkdown, type ArticleData } from "@/utils/articles";
 import { getHtmlContent } from "@/utils/getHtmlContent";
 import ArticleContent from "@/components/ArticleContent";
 
@@ -13,10 +13,11 @@ export default async function ArticlePage({
   const { slug } = params;
 
   // Fetch article metadata and raw content
-  let article;
+  let article: ArticleData;
   try {
     article = getArticleMarkdown(slug);
   } catch (err) {
+    console.log(err);
     return (
       <div>
         <h1>Article not found</h1>

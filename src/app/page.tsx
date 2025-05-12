@@ -1,8 +1,8 @@
-import { getAllArticles } from "@/utils/articles";
+import { getAllArticles, type ArticleMeta } from "@/utils/articles";
 import ArticleLink from "@/components/ArticleLink";
 
 export default async function Index() {
-  const articles = getAllArticles();
+  const articles: ArticleMeta[] = getAllArticles();
 
   if (articles.length === 0) return <h1>No articles found</h1>;
   return (
