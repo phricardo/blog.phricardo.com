@@ -6,6 +6,7 @@ export interface ArticleMeta {
   slug: string;
   title: string;
   author?: string;
+  authorImage?: string | null;
   tags: string[];
   publishDate: string | null;
 }
@@ -15,8 +16,8 @@ export interface ArticleData extends ArticleMeta {
 }
 
 /***
- * Reads all.md files in public/articles and returns an array of metadata.
- * */
+ * Reads all .md files in public/articles and returns an array of metadata.
+ */
 export function getAllArticles(): ArticleMeta[] {
   const dir = path.join(process.cwd(), "public", "articles");
   const fileNames = fs.readdirSync(dir);
@@ -33,13 +34,18 @@ export function getAllArticles(): ArticleMeta[] {
       : [];
 
     const publishDate: string | null = data.publishDate
-      ? new Date(data.publishDate).toLocaleDateString("pt-BR")
+      ? new Date(data.publishDate).toISOString()
+      : null;
+
+    const authorImage: string | null = data.authorImage
+      ? String(data.authorImage)
       : null;
 
     return {
       slug,
-      title: data.title,
-      author: data.author,
+      title: String(data.title),
+      author: data.author ? String(data.author) : undefined,
+      authorImage,
       tags,
       publishDate,
     };
@@ -71,10 +77,15 @@ export function getArticleMarkdown(slug: string): ArticleData {
     ? new Date(data.publishDate).toISOString()
     : null;
 
+  const authorImage: string | null = data.authorImage
+    ? String(data.authorImage)
+    : null;
+
   return {
     slug,
-    title: data.title,
-    author: data.author,
+    title: String(data.title),
+    author: data.author ? String(data.author) : undefined,
+    authorImage,
     tags,
     publishDate,
     content,
