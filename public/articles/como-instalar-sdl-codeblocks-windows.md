@@ -1,7 +1,7 @@
 ---
 title: Instalação da biblioteca SDL no Code::Blocks + Windows
 author: Pedro Ricardo
-publishDate: 2025-01-12
+publishDate: 2025-05-12
 tags: sdl,c,windows
 authorImage: https://github.com/phricardo.png
 ---
