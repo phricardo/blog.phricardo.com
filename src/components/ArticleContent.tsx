@@ -3,7 +3,6 @@
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
-import ContentRenderer from "@/components/ContentRenderer";
 
 export default function ArticleContent({
   title,
@@ -21,8 +20,8 @@ export default function ArticleContent({
   htmlContent: string;
 }) {
   return (
-    <main className="min-h-screen bg-white px-4 py-10 sm:px-6 lg:px-8">
-      <div className="max-w-3xl mx-auto space-y-6">
+    <main className="min-h-screen bg-gray-50 px-4 py-10 sm:px-6 lg:px-8">
+      <div className="max-w-3xl bg-white shadow-none sm:shadow-lg rounded-2xl mx-auto space-y-6 p-4 sm:p-8">
         <Link
           href="/"
           className="text-blue-600 hover:underline text-sm inline-block mb-4"
@@ -80,7 +79,7 @@ export default function ArticleContent({
         </header>
 
         <article className="markdown-content">
-          <ContentRenderer htmlContent={htmlContent} />
+          <div dangerouslySetInnerHTML={{ __html: htmlContent }} />
         </article>
       </div>
     </main>
