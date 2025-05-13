@@ -40,7 +40,7 @@ export default async function ArticlePage({
     return <ArticleNotFound />;
   }
 
-  const { publishDate, title, author, content } = article;
+  const { publishDate, title, author, content, authorImage } = article;
 
   // Convert markdown to HTML
   const htmlContent = await getHtmlContent(content);
@@ -51,6 +51,7 @@ export default async function ArticlePage({
       author={author}
       publishDate={publishDate}
       htmlContent={htmlContent}
+      authorImage={authorImage}
     />
   );
 }

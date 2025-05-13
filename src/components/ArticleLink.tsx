@@ -51,10 +51,7 @@ export default function ArticleLink({
                 className="rounded-full"
               />
             )}
-            <p>
-              <span className="font-medium text-gray-800">Autor:</span>{" "}
-              {article.author}
-            </p>
+            <p>{article.author}</p>
           </div>
         )}
 
