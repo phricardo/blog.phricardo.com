@@ -6,11 +6,9 @@ tags: sdl,c,windows
 authorImage: https://github.com/phricardo.png
 ---
 
-### Instalação da biblioteca SDL no Code::Blocks + Windows
+# Instalação da biblioteca SDL no Code::Blocks + Windows
 
 A seguir, explico como instalar a biblioteca SDL em ambientes Windows, com recomendações e links úteis.
-
----
 
 1. **Instale o Code::Blocks**
 

@@ -6,6 +6,7 @@ import Image from "next/image";
 import Markdown from "react-markdown";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { dark } from "react-syntax-highlighter/dist/esm/styles/prism";
+import MdContent from "./MdContent";
 
 export default function ArticleContent({
   title,
@@ -80,32 +81,7 @@ export default function ArticleContent({
           </div>
         </header>
 
-        <article className="markdown-content ">
-          <Markdown
-            children={markdown}
-            components={{
-              code(props) {
-                const { children, className, node, ...rest } = props;
-                const { ref: _ref, key: _key, ...restProps } = rest as any;
-                const match = /language-(\w+)/.exec(className || "");
-                return match ? (
-                  <SyntaxHighlighter
-                    {...restProps}
-                    PreTag="div"
-                    language={match[1]}
-                    style={dark}
-                  >
-                    {String(children).replace(/\n$/, "")}
-                  </SyntaxHighlighter>
-                ) : (
-                  <code {...rest} className={className}>
-                    {children}
-                  </code>
-                );
-              },
-            }}
-          />
-        </article>
+        <MdContent markdown={markdown} />
       </div>
     </main>
   );
