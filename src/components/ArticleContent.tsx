@@ -3,6 +3,9 @@
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
+import Markdown from "react-markdown";
+import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
+import { dark } from "react-syntax-highlighter/dist/esm/styles/prism";
 
 export default function ArticleContent({
   title,
@@ -10,14 +13,14 @@ export default function ArticleContent({
   authorImage,
   publishDate,
   tags = [],
-  htmlContent,
+  markdown,
 }: {
   title: string;
   author?: string;
   authorImage?: string | null;
   publishDate?: string | null;
   tags?: string[];
-  htmlContent: string;
+  markdown: string;
 }) {
   return (
     <main className="min-h-screen bg-gray-50 px-4 py-10 sm:px-6 lg:px-8">
@@ -28,7 +31,6 @@ export default function ArticleContent({
         >
           &larr; Voltar para o início
         </Link>
-
         <header className="space-y-6">
           <h1 className="text-4xl font-bold text-gray-900 leading-tight">
             {title}
@@ -78,8 +80,31 @@ export default function ArticleContent({
           </div>
         </header>
 
-        <article className="markdown-content">
-          <div dangerouslySetInnerHTML={{ __html: htmlContent }} />
+        <article className="markdown-content ">
+          <Markdown
+            children={markdown}
+            components={{
+              code(props) {
+                const { children, className, node, ...rest } = props;
+                const { ref: _ref, key: _key, ...restProps } = rest as any;
+                const match = /language-(\w+)/.exec(className || "");
+                return match ? (
+                  <SyntaxHighlighter
+                    {...restProps}
+                    PreTag="div"
+                    language={match[1]}
+                    style={dark}
+                  >
+                    {String(children).replace(/\n$/, "")}
+                  </SyntaxHighlighter>
+                ) : (
+                  <code {...rest} className={className}>
+                    {children}
+                  </code>
+                );
+              },
+            }}
+          />
         </article>
       </div>
     </main>

@@ -2,7 +2,6 @@
 
 import type { Metadata } from "next";
 import { getArticleMarkdown, type ArticleData } from "@/utils/articles";
-import { getHtmlContent } from "@/utils/getHtmlContent";
 import ArticleContent from "@/components/ArticleContent";
 import ArticleNotFound from "@/components/ArticleNotFound";
 
@@ -42,15 +41,12 @@ export default async function ArticlePage({
 
   const { publishDate, title, author, content, authorImage } = article;
 
-  // Convert markdown to HTML
-  const htmlContent = await getHtmlContent(content);
-
   return (
     <ArticleContent
       title={title}
       author={author}
       publishDate={publishDate}
-      htmlContent={htmlContent}
+      markdown={content}
       authorImage={authorImage}
     />
   );

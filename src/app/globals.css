@@ -38,11 +38,4 @@ body {
   .markdown-content blockquote {
     @apply border-l-4 border-gray-300 pl-4 italic my-4;
   }
-  .markdown-content [data-language] {
-    @apply bg-gray-100 rounded-lg p-4 overflow-x-auto text-black;
-  }
-  .markdown-content [data-language] pre,
-  .markdown-content [data-language] code {
-    @apply block whitespace-pre-wrap font-mono text-black;
-  }
 }
